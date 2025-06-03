@@ -8,7 +8,7 @@ env.bak/
 venv.bak/
 
 # Backup files #
-*.bak 
+*.bak
 
 # Python #
 *.py[cod]
@@ -53,3 +53,9 @@ nosetests.xml
 coverage.xml
 *.cover
 .hypothesis/
+
+__pycache__
+.env
+db.sqlite3
+.idea
+staticfiles/

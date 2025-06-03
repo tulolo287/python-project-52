@@ -15,3 +15,13 @@ collectstatic:
 
 migrate:
 	uv run python3 manage.py migrate
+
+migrations:
+	uv run python3 manage.py makemigrations
+
+test:
+	python3 manage.py test
+
+lint:
+	ruff check --fix
+	ruff format

@@ -11,10 +11,14 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 import os
-from pathlib import Path
+from pathlib import (
+    Path,
+)
 
-import dj_database_url
-from dotenv import load_dotenv
+# import dj_database_url
+from dotenv import (
+    load_dotenv,
+)
 
 load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -32,7 +36,11 @@ SECRET_KEY = "django-insecure-zw=&t3bo#x3s#65^v5)^43pezjap3_k91vapcf5ro+-(1ckt$b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["webserver", "127.0.0.1", "python-project-52-8j3s.onrender.com"]
+ALLOWED_HOSTS = [
+    "webserver",
+    "127.0.0.1",
+    "python-project-52-8j3s.onrender.com",
+]
 
 
 # Application definition
@@ -44,8 +52,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "task_manager",
     "django_bootstrap5",
+    "task_manager",
+    "task_manager.users",
 ]
 
 MIDDLEWARE = [
@@ -64,7 +73,7 @@ ROOT_URLCONF = "task_manager.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'templates'],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -83,15 +92,13 @@ WSGI_APPLICATION = "task_manager.wsgi.application"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    "default": dj_database_url.config(
-        default=DATABASE_URL,
-        conn_max_age=600,
-        conn_health_checks=True,
-    ),
-    "sql": {
+    "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    },
+        "NAME": os.path.join(
+            BASE_DIR,
+            "db.sqlite3",
+        ),
+    }
 }
 
 
@@ -125,11 +132,17 @@ USE_I18N = True
 
 USE_TZ = True
 
-LOCALE_PATHS = [BASE_DIR / 'locale']
+LOCALE_PATHS = [BASE_DIR / "locale"]
 
 LANGUAGES = [
-    ('en', ('English')),
-    ('ru', ('Russian')),
+    (
+        "en",
+        ("English"),
+    ),
+    (
+        "ru",
+        ("Russian"),
+    ),
 ]
 
 # Static files (CSS, JavaScript, Images)
@@ -137,9 +150,12 @@ LANGUAGES = [
 
 STATIC_URL = "static/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = "/users/"
