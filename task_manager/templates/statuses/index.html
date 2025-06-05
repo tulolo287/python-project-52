@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% block content %}
+   <h1 class="my-4"> {{ statuses }}</h1>
+   <a class="nav-link" href="{% url "status_create" %}">{% translate "Create status" %}</a>
+    <table class = "table table-striped">
+		<thead>
+        <tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Дата создания</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+        {% for status in statuses %}
+            <tr>
+                <td> {{status.id}}</td>
+                <td> {{status.name}}</td>
+                <td> {{status.updated_at}}</td>
+                <td>
+                    <a href = "{% url "status_update" status.id %}">{% translate "Изменить" %}</a><br>
+                    <a href = "{% url "status_delete" status.id %}">{% translate "Удалить" %}</a>
+                </td>
+            </tr>
+        {% endfor %}
+		</tbody>
+    </table>
+{% endblock %}

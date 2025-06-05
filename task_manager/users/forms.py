@@ -10,9 +10,7 @@ from task_manager.users.models import (
 class UserCreateForm(forms.ModelForm):
     password = forms.CharField(
         label="Password",
-        widget=forms.PasswordInput(
-            attrs={"title": "Password must contains at least 3 chars"}
-        ),
+        widget=forms.PasswordInput(attrs={"title": "Password must contains at least 3 chars"}),
     )
     password_confirm = forms.CharField(
         label="Password confirmation",
@@ -46,10 +44,7 @@ class UserCreateForm(forms.ModelForm):
             field.widget.attrs["placeholder"] = field.label
             field.widget.attrs["class"] = "form-control"
 
-    def save(
-        self,
-        commit=True,
-    ):
+    def save(self, commit=True):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password"])
         if commit:

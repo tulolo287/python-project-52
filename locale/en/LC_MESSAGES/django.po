@@ -33,3 +33,7 @@ msgstr "Login"
 #: task_manager/templates/base_layout.html:36
 msgid "Регистрация"
 msgstr "Registration"
+
+#: templates/nav.html:15
+msgid "Статусы"
+msgstr "Statuses"

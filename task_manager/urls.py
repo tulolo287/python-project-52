@@ -53,4 +53,8 @@ urlpatterns = [
         "users/",
         include("task_manager.users.urls"),
     ),
+        path(
+        "statuses/",
+        include("task_manager.statuses.urls"),
+    ),
 ]

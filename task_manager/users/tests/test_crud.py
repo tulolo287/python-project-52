@@ -61,8 +61,6 @@ class TestUser(TestCase):
         self.assertEqual(User.objects.all().count(), 1)
 
         self.client.force_login(user=self.test_user)
-        response = self.client.post(
-            reverse("user_delete", kwargs={"pk": self.test_user.id})
-        )
+        response = self.client.post(reverse("user_delete", kwargs={"pk": self.test_user.id}))
         self.assertRedirects(response, reverse("users"))
         self.assertEqual(User.objects.all().count(), 0)
