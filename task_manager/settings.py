@@ -11,14 +11,10 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 import os
-from pathlib import (
-    Path,
-)
+from pathlib import Path
 
 import dj_database_url
-from dotenv import (
-    load_dotenv,
-)
+from dotenv import load_dotenv
 
 load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -56,6 +52,7 @@ INSTALLED_APPS = [
     "task_manager",
     "task_manager.users",
     "task_manager.statuses",
+    "task_manager.tasks",
 ]
 
 MIDDLEWARE = [
@@ -105,19 +102,12 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
-    {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        'OPTIONS': {
+            'min_length': 3,
+        },
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
@@ -157,3 +147,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/users/"
+
+AUTH_USER_MODEL = "users.User"

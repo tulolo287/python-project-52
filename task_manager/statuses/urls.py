@@ -1,10 +1,10 @@
 from django.urls import path
 
 from .views import (
-               StatusCreateView,
-               StatusDeleteView,
-               StatusIndexView,
-               StatusUpdateView,
+    StatusCreateView,
+    StatusDeleteView,
+    StatusIndexView,
+    StatusUpdateView,
 )
 
 urlpatterns = [

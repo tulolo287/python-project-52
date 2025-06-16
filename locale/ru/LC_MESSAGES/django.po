@@ -1,0 +1,181 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-12 18:36+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: task_manager/tasks/forms.py:21 task_manager/tasks/forms.py:44
+#: task_manager/tasks/views.py:26
+msgid "Name"
+msgstr "Имя"
+
+msgid "Username"
+msgstr "Имя пользователя"
+
+msgid "Full name"
+msgstr "Полное имя"
+
+#: task_manager/tasks/forms.py:27 task_manager/tasks/forms.py:45
+msgid "Description"
+msgstr "Описание"
+
+#: task_manager/tasks/forms.py:46 task_manager/tasks/views.py:27
+msgid "Status"
+msgstr "Статус"
+
+#: task_manager/tasks/forms.py:47
+msgid "Executor"
+msgstr "Исполнитель"
+
+#: task_manager/tasks/views.py:23
+msgid "Select"
+msgstr "Выбрать"
+
+#: task_manager/tasks/views.py:24 task_manager/templates/header.html:29
+msgid "Tasks"
+msgstr "Задачи"
+
+#: task_manager/tasks/views.py:25
+msgid "ID"
+msgstr "Идентификатор"
+
+#: task_manager/tasks/views.py:28
+msgid "Author"
+msgstr "Автор"
+
+#: task_manager/tasks/views.py:30
+msgid "Created at"
+msgstr "Создано"
+
+#: task_manager/tasks/views.py:38
+msgid "Add Task"
+msgstr "Добавить задачу"
+
+#: task_manager/tasks/views.py:39
+msgid "Create"
+msgstr "Создать"
+
+#: task_manager/tasks/views.py:41
+msgid "Task created successfully"
+msgstr "Задача создана"
+
+#: task_manager/tasks/views.py:55
+msgid "Edit task"
+msgstr "Редактировать задачу"
+
+#: task_manager/tasks/views.py:56
+msgid "Update"
+msgstr "Обновить"
+
+#: task_manager/tasks/views.py:68
+msgid "Remove task"
+msgstr "Удалить задачу"
+
+#: task_manager/tasks/views.py:69
+msgid "Remove"
+msgstr "Удалить"
+
+#: task_manager/tasks/views.py:70
+msgid "Are you sure delete task "
+msgstr "Удалить задачу"
+
+#: task_manager/tasks/views.py:74
+msgid "Task was successfully deleted"
+msgstr "Задача удалена"
+
+#: task_manager/tasks/views.py:81
+msgid "Task view"
+msgstr "Вид задачи"
+
+#: task_manager/templates/header.html:3
+msgid "Task manager"
+msgstr "Менеджер задач"
+
+#: task_manager/templates/header.html:19
+msgid "Users"
+msgstr "Пользователи"
+
+#: task_manager/templates/header.html:26
+msgid "Statuses"
+msgstr "Статусы"
+
+#: task_manager/templates/header.html:34
+msgid "Exit"
+msgstr "Выход"
+
+#: task_manager/templates/header.html:39
+msgid "Login"
+msgstr "Войти"
+
+msgid "Enter"
+msgstr "Вход"
+
+#: task_manager/templates/tasks/detail.html:35
+#: task_manager/templates/tasks/index.html:29
+msgid "Edit"
+msgstr "Редактровать"
+
+msgid "Create status"
+msgstr "Создать статус"
+
+msgid "Please login"
+msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
+
+msgid "You have no permissions to change another user."
+msgstr "У вас нет прав для изменения другого пользователя."
+
+msgid "Edit user"
+msgstr "Изменение пользователя"
+
+msgid "Delete user"
+msgstr "Удалить пользователя"
+
+msgid "Password confirmation"
+msgstr "Подтверждение пароля"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Logged out successfully"
+msgstr "Вы разлогинены"
+
+msgid "Registration"
+msgstr "Регистрация"
+
+msgid "Register"
+msgstr "Зарегистрировать"
+
+msgid "Please, type your password again"
+msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
+
+msgid "Password must contains at least 3 chars"
+msgstr "Ваш пароль должен содержать как минимум 3 символа."
+
+msgid "Login successfully"
+msgstr "Вы залогинены"
+
+msgid "Create task"
+msgstr "Создать задачу"
+
+msgid "Only author has permission"
+msgstr "Задачу может удалить только ее автор"
+
+msgid "Task updated successfully"
+msgstr "Задача успешно изменена"
+

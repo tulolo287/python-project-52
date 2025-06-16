@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 {% load i18n %}
 {% block content %}
-   <h1 class="my-4"> {{ header }}</h1>
+   <h1 class="my-4"> {{ title }}</h1>
     <table class = "table table-striped">
 		<thead>
         <tr>
-			<th>ID</th>
-			<th>Имя пользователя</th>
-			<th>Полное имя</th>
-			<th>Дата создания</th>
+            <th>{{ ID }}</th>
+            <th>{{ username }}</th>
+            <th>{{ full_name }}</th>
+            <th>{{ created_at }}</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -20,8 +20,8 @@
                 <td> {{user.get_full_name}} </td>
                 <td> {{user.date_joined}}</td>
                 <td>
-                    <a href = "{% url "user_update" user.id %}">{% translate "Изменить" %}</a><br>
-                    <a href = "{% url "user_delete" user.id %}">{% translate "Удалить" %}</a>
+                    <a href = "{% url "user_update" user.id %}">{{edit}}</a><br>
+                    <a href = "{% url "user_delete" user.id %}">{{delete}}</a>
                 </td>
             </tr>
         {% endfor %}

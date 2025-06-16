@@ -1,9 +1,7 @@
-from django.contrib.auth.models import (
-    User,
-)
+from django.contrib.auth.models import AbstractUser
 
 
-class User(User):
+class User(AbstractUser):
     def __repr__(self):
         return f"{self.__class__}"
 

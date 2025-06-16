@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1 class="my-4">Удаление status</h1>
+    <h1 class="my-4">{{title}}</h1>
     <form method="post">
     {% csrf_token %}
-        <p>Вы уверены, что хотите удалить {{ status.name }} ?</p>
-    <input class="btn btn-danger" type="submit" value="Да, удалить">
+        <p>{{confirm}} {{ status.name }} ?</p>
+    <input class="btn btn-danger" type="submit" value={{submit}}>
     </form>
 {% endblock %}

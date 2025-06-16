@@ -2,7 +2,7 @@
 {% load django_bootstrap5  %}
 {% block content %}
 <div class="container wrapper flex-grow-1" bis_skin_checked="1">
-	<h1 class="my-4">Изменение пользователя </h1>
+	<h1 class="my-4">{{header}}</h1>
 	<form method="post">
 		{% csrf_token %}
 		<div class="form">
@@ -10,7 +10,7 @@
 			<div class="form-group">{% bootstrap_field field %}</div>
 			{% endfor %}
 			<div class="form-group">
-				<input class="btn btn-primary" type="submit" value="Изменить" />
+				<input class="btn btn-primary" type="submit" value={{submit}} />
 			</div>
 		</div>
 	</form>
