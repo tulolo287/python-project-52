@@ -24,11 +24,11 @@ class TestStatus(TestCase):
             "first_name": "user2",
             "last_name": "user2",
             "username": "test2@test.com",
-            "password": "user2"
+            "password": "user2",
         }
         cls.user = User.objects.create_user(**user_data)
 
-    def test_status_page_status_200(self):
+    def test_status_index_page(self):
         self.client.force_login(user=self.user)
         response = self.client.get(reverse("statuses"))
         self.assertEqual(response.status_code, 200)
@@ -65,6 +65,8 @@ class TestStatus(TestCase):
         self.assertEqual(Status.objects.all().count(), 1)
 
         self.client.force_login(user=self.user)
-        response = self.client.post(reverse("status_delete", kwargs={"pk": self.test_status.id}))
+        response = self.client.post(
+            reverse("status_delete", kwargs={"pk": self.test_status.id})
+        )
         self.assertRedirects(response, reverse("statuses"))
         self.assertEqual(Status.objects.all().count(), 0)

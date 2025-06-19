@@ -61,7 +61,7 @@ msgstr "Автор"
 
 #: task_manager/tasks/views.py:30
 msgid "Created at"
-msgstr "Создано"
+msgstr "Дата создания"
 
 #: task_manager/tasks/views.py:38
 msgid "Add Task"
@@ -179,3 +179,26 @@ msgstr "Задачу может удалить только ее автор"
 msgid "Task updated successfully"
 msgstr "Задача успешно изменена"
 
+msgid "You cannot delete a label which is currently being used."
+msgstr "Невозможно удалить метку, потому что она используется"
+
+msgid "Labels"
+msgstr "Метки"
+
+msgid "Label has been created successfully."
+msgstr "Метка успешно создана"
+
+msgid "Create label"
+msgstr "Создать метку"
+
+msgid "Label has been edited successfully."
+msgstr "Метка успешно изменена"
+
+msgid "Edit label"
+msgstr "Изменение метки"
+
+msgid "Delete label"
+msgstr "Удаление метки"
+
+msgid "Are you sure delete"
+msgstr "Вы уверены, что хотите удалить"

@@ -1,4 +1,3 @@
-import json
 import os
 
 from django.test import TestCase
@@ -21,16 +20,12 @@ class TestTask(TestCase):
             "first_name": "user2",
             "last_name": "user2",
             "username": "test2@test.com",
-            "password": "user2"
+            "password": "user2",
         }
         status = {"name": "test"}
         cls.user = User.objects.create_user(**user_data)
         cls.status = Status.objects.create(**status)
-        task_data = {
-            "name": "test",
-            "author": cls.user,
-            "status": cls.status
-        }
+        task_data = {"name": "test", "author": cls.user, "status": cls.status}
         cls.task = Task.objects.create(**task_data)
 
     def test_task_page_login(self):
@@ -41,11 +36,12 @@ class TestTask(TestCase):
     def test_task_page_logout(self):
         response = self.client.get(reverse('tasks'))
         self.assertRedirects(response, "/login/?next=/tasks/")
+
     def test_create_task(self):
         new_task_data = {
             "name": "test2",
             "author": self.user.id,
-            "status": self.status.id
+            "status": self.status.id,
         }
         self.client.force_login(user=self.user)
         response = self.client.post(reverse("task_create"), new_task_data)
@@ -61,11 +57,7 @@ class TestTask(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_update_task(self):
-        update_task = {
-            "name": "bla",
-            "author": self.user.id,
-            "status": self.status.id
-        }
+        update_task = {"name": "bla", "author": self.user.id, "status": self.status.id}
         self.client.force_login(user=self.user)
         response = self.client.post(
             reverse("task_update", kwargs={"pk": self.task.id}),
@@ -82,8 +74,3 @@ class TestTask(TestCase):
         response = self.client.post(reverse("task_delete", kwargs={"pk": self.task.id}))
         self.assertRedirects(response, reverse("tasks"))
         self.assertEqual(Task.objects.all().count(), 0)
-
-
-
-
-

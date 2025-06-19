@@ -56,4 +56,8 @@ urlpatterns = [
         "tasks/",
         include("task_manager.tasks.urls"),
     ),
+    path(
+        "labels/",
+        include("task_manager.labels.urls"),
+    ),
 ]

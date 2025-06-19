@@ -1,9 +1,10 @@
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from task_manager.statuses.models import Status
-from task_manager.statuses.forms import StatusForm
-from django.urls import reverse_lazy as reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy as reverse
 from django.utils.translation import gettext_lazy as translate
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+
+from task_manager.statuses.forms import StatusForm
+from task_manager.statuses.models import Status
 
 
 class StatusIndexView(LoginRequiredMixin, ListView):
@@ -17,9 +18,10 @@ class StatusIndexView(LoginRequiredMixin, ListView):
         'edit': translate('Edit'),
         'delete': translate('Delete'),
         'created_at': translate('Created at'),
-        'create_status': translate('Create status')
+        'create_status': translate('Create status'),
     }
     permission_denied_message = translate('Please login')
+
 
 class StatusCreateView(LoginRequiredMixin, CreateView):
     form_class = StatusForm
@@ -27,11 +29,12 @@ class StatusCreateView(LoginRequiredMixin, CreateView):
     template_name = "statuses/create.html"
     success_url = reverse('statuses')
     extra_context = {
-        'header': translate('Create status'),
+        'title': translate('Create status'),
         'submit': translate('Create'),
     }
     success_message = translate('Status created successfully')
     permission_denied_message = translate('Please login')
+
 
 class StatusUpdateView(LoginRequiredMixin, UpdateView):
     model = Status
@@ -40,11 +43,12 @@ class StatusUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "statuses/update.html"
     success_url = reverse('statuses')
     extra_context = {
-        'header': translate('Update status'),
+        'title': translate('Update status'),
         'submit': translate('Update'),
     }
     success_message = translate('Status updated successfully')
     permission_denied_message = translate('Please login')
+
 
 class StatusDeleteView(LoginRequiredMixin, DeleteView):
     model = Status
@@ -52,12 +56,10 @@ class StatusDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "statuses/delete.html"
     success_url = reverse('statuses')
     extra_context = {
-        'header': translate('Remove status'),
+        'title': translate('Remove status'),
         'confirm': translate('Are you sure delete'),
         'submit': translate('Yes, remove'),
     }
     permission_denied_message = translate('Please login')
     protected_error_message = translate('Status can\'t be deleted - on use now')
     success_message = translate('Status was deleted successfully')
-
-
