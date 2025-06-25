@@ -39,6 +39,9 @@ msgstr "Описание"
 msgid "Status"
 msgstr "Статус"
 
+msgid "Status created successfully"
+msgstr "Статус успешно создан"
+
 #: task_manager/tasks/forms.py:47
 msgid "Executor"
 msgstr "Исполнитель"
@@ -115,6 +118,15 @@ msgstr "Пользователи"
 msgid "Statuses"
 msgstr "Статусы"
 
+msgid "Remove status"
+msgstr "Удаление статуса"
+
+msgid "Cannot delete busy status"
+msgstr "Невозможно удалить статус, потому что он используется"
+
+msgid "Status delete successfully"
+msgstr "Статус успешно удален"
+
 #: task_manager/templates/header.html:34
 msgid "Exit"
 msgstr "Выход"
@@ -143,8 +155,17 @@ msgstr "У вас нет прав для изменения другого по�
 msgid "Edit user"
 msgstr "Изменение пользователя"
 
+msgid "User update successfully"
+msgstr "Изменение пользователя"
+
+msgid "User created successfully"
+msgstr "Пользователь создан успешно"
+
 msgid "Delete user"
 msgstr "Удалить пользователя"
+
+msgid "User was successfully deleted"
+msgstr "Пользователь был удален"
 
 msgid "Password confirmation"
 msgstr "Подтверждение пароля"
@@ -202,3 +223,16 @@ msgstr "Удаление метки"
 
 msgid "Are you sure delete"
 msgstr "Вы уверены, что хотите удалить"
+
+msgid "Show"
+msgstr "Показать"
+
+msgid "Label"
+msgstr "Метка"
+
+msgid "My tasks"
+msgstr "Только свои задачи"
+
+msgid "Yes, remove"
+msgstr "Да, удалить"
+

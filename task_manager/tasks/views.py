@@ -9,15 +9,18 @@ from django.views.generic import (
     ListView,
     UpdateView,
 )
+from django_filters.views import FilterView
 
 from task_manager.users.models import User
+from .filter import TaskFilter
 from .forms import TaskForm
 from .mixins import AuthorRequireMixin
 from .models import Task
 
 
-class TaskIndexView(LoginRequiredMixin, ListView):
+class TaskIndexView(LoginRequiredMixin, FilterView, ListView):
     model = Task
+    filterset_class = TaskFilter
     template_name = "tasks/index.html"
     context_object_name = "tasks"
     extra_context = {
@@ -37,7 +40,7 @@ class TaskIndexView(LoginRequiredMixin, ListView):
 
 class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = TaskForm
-    template_name = 'tasks/create.html'
+    template_name = 'form.html'
     success_url = reverse('tasks')
     extra_context = {
         'title': translate('Add Task'),
@@ -55,7 +58,7 @@ class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Task
     form_class = TaskForm
-    template_name = 'tasks/create.html'
+    template_name = 'form.html'
     success_url = reverse('tasks')
     extra_context = {
         'title': translate('Edit task'),

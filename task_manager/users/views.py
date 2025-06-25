@@ -28,9 +28,9 @@ class UserIndexView(ListView):
     }
 
 
-class UserCreateView(CreateView, SuccessMessageMixin):
+class UserCreateView(SuccessMessageMixin, CreateView):
     form_class = UserCreateForm
-    template_name = "users/create.html"
+    template_name = "form.html"
     success_url = reverse("login")
     extra_context = {
         'title': translate('Registration'),
@@ -42,18 +42,17 @@ class UserCreateView(CreateView, SuccessMessageMixin):
 class UserUpdateView(
     CustomLoginRequiredMixin,
     CheckChangePermissionMixin,
-    UpdateView,
     SuccessMessageMixin,
+    UpdateView,
 ):
     model = User
     form_class = UserCreateForm
-    template_name = "users/update.html"
+    template_name = "form.html"
     success_url = reverse("users")
     extra_context = {
-        'tilte': translate('Edit user'),
+        'title': translate('Edit user'),
         'submit': translate('Update'),
     }
-    modify_error_message = translate('You cannot edit another user')
     success_message = translate('User update successfully')
 
 
@@ -61,15 +60,15 @@ class UserDeleteView(
     CustomLoginRequiredMixin,
     CheckChangePermissionMixin,
     ProtectDeleteMixin,
-    DeleteView,
     SuccessMessageMixin,
+    DeleteView,
 ):
     model = User
     context_object_name = "user"
     template_name = "users/delete.html"
     success_url = reverse("users")
     extra_context = {
-        'tilte': translate('Remove user'),
+        'title': translate('Remove user'),
         'submit': translate('Yes, remove'),
         'confirm': translate('Are you sure delete'),
     }

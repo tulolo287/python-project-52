@@ -1,8 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy as reverse
 from django.utils.translation import gettext_lazy as translate
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
+from task_manager.labels.mixins import CheckTaskMixin
 from task_manager.statuses.forms import StatusForm
 from task_manager.statuses.models import Status
 
@@ -23,10 +25,10 @@ class StatusIndexView(LoginRequiredMixin, ListView):
     permission_denied_message = translate('Please login')
 
 
-class StatusCreateView(LoginRequiredMixin, CreateView):
+class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = StatusForm
     context_object_name = "statuses"
-    template_name = "statuses/create.html"
+    template_name = "form.html"
     success_url = reverse('statuses')
     extra_context = {
         'title': translate('Create status'),
@@ -36,11 +38,11 @@ class StatusCreateView(LoginRequiredMixin, CreateView):
     permission_denied_message = translate('Please login')
 
 
-class StatusUpdateView(LoginRequiredMixin, UpdateView):
+class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Status
     form_class = StatusForm
     context_object_name = "statuses"
-    template_name = "statuses/update.html"
+    template_name = "form.html"
     success_url = reverse('statuses')
     extra_context = {
         'title': translate('Update status'),
@@ -50,7 +52,9 @@ class StatusUpdateView(LoginRequiredMixin, UpdateView):
     permission_denied_message = translate('Please login')
 
 
-class StatusDeleteView(LoginRequiredMixin, DeleteView):
+class StatusDeleteView(
+    CheckTaskMixin, SuccessMessageMixin, LoginRequiredMixin, DeleteView
+):
     model = Status
     context_object_name = "statuses"
     template_name = "statuses/delete.html"
@@ -58,8 +62,8 @@ class StatusDeleteView(LoginRequiredMixin, DeleteView):
     extra_context = {
         'title': translate('Remove status'),
         'confirm': translate('Are you sure delete'),
-        'submit': translate('Yes, remove'),
+        'submit': translate('Yes, delete'),
     }
-    permission_denied_message = translate('Please login')
-    protected_error_message = translate('Status can\'t be deleted - on use now')
     success_message = translate('Status was deleted successfully')
+    permission_denied_message = translate('Please login')
+    protected_error_message = translate('Cannot delete busy status')

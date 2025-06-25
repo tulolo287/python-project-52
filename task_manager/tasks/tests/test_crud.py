@@ -1,32 +1,11 @@
-import os
-
 from django.test import TestCase
 from django.urls import reverse_lazy as reverse
 
-from task_manager.statuses.models import Status
 from task_manager.tasks.models import Task
-from task_manager.users.models import User
-
-FIXTURES_DIR = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)),
-    "fixtures",
-)
+from task_manager.test_db import TestDB
 
 
-class TestTask(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        user_data = {
-            "first_name": "user2",
-            "last_name": "user2",
-            "username": "test2@test.com",
-            "password": "user2",
-        }
-        status = {"name": "test"}
-        cls.user = User.objects.create_user(**user_data)
-        cls.status = Status.objects.create(**status)
-        task_data = {"name": "test", "author": cls.user, "status": cls.status}
-        cls.task = Task.objects.create(**task_data)
+class TestTask(TestDB, TestCase):
 
     def test_task_page_login(self):
         self.client.force_login(user=self.user)
@@ -43,13 +22,14 @@ class TestTask(TestCase):
             "author": self.user.id,
             "status": self.status.id,
         }
+        tasks_count = Task.objects.all().count()
         self.client.force_login(user=self.user)
         response = self.client.post(reverse("task_create"), new_task_data)
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse("tasks"))
-        task2 = Task.objects.get(pk=2)
-        self.assertEqual(task2.name, new_task_data.get("name"))
-        self.assertEqual(Task.objects.all().count(), 2)
+        new_task = Task.objects.last()
+        self.assertEqual(new_task.name, new_task_data.get("name"))
+        self.assertEqual(Task.objects.all().count(), tasks_count + 1)
 
     def test_read_task(self):
         self.client.force_login(user=self.user)
@@ -65,12 +45,12 @@ class TestTask(TestCase):
         )
         self.assertRedirects(response, reverse("tasks"))
         task = Task.objects.get(pk=self.task.id)
-        self.assertEqual(task.name, update_task["name"])
+        self.assertEqual(task.name, update_task.get('name'))
 
     def test_delete_task(self):
-        self.assertEqual(Task.objects.all().count(), 1)
+        tasks_count = Task.objects.all().count()
 
         self.client.force_login(user=self.user)
         response = self.client.post(reverse("task_delete", kwargs={"pk": self.task.id}))
         self.assertRedirects(response, reverse("tasks"))
-        self.assertEqual(Task.objects.all().count(), 0)
+        self.assertEqual(Task.objects.all().count(), tasks_count - 1)
