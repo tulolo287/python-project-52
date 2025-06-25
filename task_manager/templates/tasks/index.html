@@ -3,6 +3,7 @@
 {% block content %}
    <h1 class="my-4"> {{ title }}</h1>
     <a class="btn btn-primary mb-3" role="button" href="{% url "task_create" %}">{% translate "Create task" %}</a>
+{% include 'tasks/filter.html' %}
     <table class = "table table-striped">
         <tr>
             <th>{{ ID }}</th>

@@ -1,27 +1,13 @@
+from django.contrib.messages import get_messages
 from django.test import TestCase
 from django.urls import reverse_lazy
 
 from task_manager.labels.models import Label
-from task_manager.statuses.models import Status
 from task_manager.tasks.models import Task
-from task_manager.users.models import User
+from task_manager.test_db import TestDB
 
 
-class TestLabels(TestCase):
-
-    @classmethod
-    def setUpTestData(cls):
-        user_data = {
-            'name': 'test',
-            'username': 'test',
-            'email': 'test',
-            'password': 'test',
-        }
-        label_data = {'name': 'label'}
-        cls.user = User.objects.create_user(user_data)
-        cls.label = Label.objects.create(**label_data)
-        status = {"name": "test"}
-        cls.status = Status.objects.create(**status)
+class TestLabels(TestDB, TestCase):
 
     def test_labels_index_page_not_loggedIn(self):
         response = self.client.get(reverse_lazy('labels'))
@@ -33,13 +19,15 @@ class TestLabels(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_create_label(self):
-        label_data = {'name': 'test'}
+        new_label_data = {'name': 'new-label'}
+        total_labels = Label.objects.all().count()
         self.client.force_login(self.user)
-        response = self.client.post(reverse_lazy('label_create'), label_data)
+        response = self.client.post(reverse_lazy('label_create'), new_label_data)
+
         self.assertRedirects(response, expected_url=(reverse_lazy('labels')))
-        new_label = Label.objects.get(pk=2)
-        self.assertEqual(new_label.name, label_data.get('name'))
-        self.assertEqual(Label.objects.all().count(), 2)
+        new_label = Label.objects.last()
+        self.assertEqual(new_label.name, new_label_data.get('name'))
+        self.assertEqual(Label.objects.all().count(), total_labels + 1)
 
     def test_update_label(self):
         update_label = {'name': 'blas'}
@@ -55,7 +43,14 @@ class TestLabels(TestCase):
     def test_delete_label(self):
         total_labels = Label.objects.all().count()
         self.client.force_login(user=self.user)
-        self.client.post(reverse_lazy('label_delete', kwargs={'pk': self.label.id}))
+        response = self.client.post(
+            reverse_lazy('label_delete', kwargs={'pk': self.label.id})
+        )
+
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), 'User was successfully deleted')
+
         self.assertEqual(Label.objects.all().count(), total_labels - 1)
 
     def test_delete_task_label(self):
@@ -63,9 +58,17 @@ class TestLabels(TestCase):
         task_data = {"name": "test", "author": self.user, "status": self.status}
         task = Task.objects.create(**task_data)
         task.label.add(self.label)
+
         self.client.force_login(user=self.user)
         response = self.client.post(
             reverse_lazy('label_delete', kwargs={'pk': self.label.id})
         )
+
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(
+            str(messages[0]), 'You cannot delete a label which is currently being used.'
+        )
+
         self.assertRedirects(response, expected_url=reverse_lazy('labels'))
         self.assertEqual(Label.objects.all().count(), total_labels)

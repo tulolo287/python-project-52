@@ -13,7 +13,7 @@ class IndexView(TemplateView):
 
 
 class LoginView(LoginView):
-    template_name = "login.html"
+    template_name = "form.html"
     next_page = reverse("home")
     extra_context = {
         'title': translate('Login'),
