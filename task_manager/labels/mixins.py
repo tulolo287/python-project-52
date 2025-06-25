@@ -6,12 +6,12 @@ from django.utils.translation import gettext_lazy as translate
 
 class CheckTaskMixin:
     error_message = translate(
-        'You cannot delete a label which is currently being used.'
+        "You cannot delete a label which is currently being used."
     )
 
     def post(self, request, *args, **kwargs):
         try:
-            super().post(request, *args, **kwargs)
+            return super().post(request, *args, **kwargs)
         except ProtectedError:
-            messages.error(request, self.error_message)
+            messages.error(request, self.protected_error_message)
         return redirect(self.success_url)

@@ -1,12 +1,19 @@
-{% load django_bootstrap5 i18n %} {% bootstrap_css %} {% bootstrap_javascript %}
+{% load django_bootstrap5 i18n %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 {% get_current_language as LANGUAGE_CODE %}
+<<<<<<< HEAD
+=======
+
+<!DOCTYPE html>
+>>>>>>> 5236271 (fix)
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{{title}}</title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 {% include "header.html" %}
 
 <div class="container wrapper flex-grow-1" bis_skin_checked="1">

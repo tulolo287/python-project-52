@@ -1,18 +1,19 @@
-from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
-MIN_PASSWORD_LENGTH = 3
+from task_manager.users.models import User
 
 
 class UserCreateForm(UserCreationForm):
-
     class Meta(UserCreationForm.Meta):
-        model = get_user_model()
-        fields = ['first_name', 'last_name', 'username']
+        model = User
+        fields = (
+            "first_name",
+            "last_name",
+            "username",
+            "password1",
+            "password2",
+        )
 
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password1"])
-        if commit:
-            user.save()
-        return user
+    def clean_username(self):
+        username = self.cleaned_data["username"]
+        return username
