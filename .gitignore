@@ -55,7 +55,6 @@ coverage.xml
 .hypothesis/
 
 __pycache__
-.env
 db.sqlite3
 .idea
 staticfiles/

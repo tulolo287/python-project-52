@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as translate
 
 
 class CustomLoginRequiredMixin(LoginRequiredMixin):
-    login_url = reverse('login')
+    login_url = reverse("login")
     login_check_message = translate("Please login")
 
     def dispatch(self, request, *args, **kwargs):
@@ -19,7 +19,9 @@ class CustomLoginRequiredMixin(LoginRequiredMixin):
 
 
 class ProtectDeleteMixin:
-    protect_executor_message = translate('You cannot delete executor of the task')
+    protect_executor_message = translate(
+        "You cannot delete executor of the task"
+    )
 
     def post(self, request, *args, **kwargs):
         try:
