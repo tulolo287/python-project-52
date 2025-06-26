@@ -6,15 +6,13 @@ from django.utils.translation import gettext_lazy as translate
 class StatusForm(forms.ModelForm):
     class Meta:
         model = Status
-        fields = 'name',
+        fields = ("name",)
         widgets = {
-            'name': forms.TextInput(
+            "name": forms.TextInput(
                 attrs={
-                    'class': 'form-control',
-                    'placeholder': translate('name')
+                    "class": "form-control",
+                    "placeholder": translate("name"),
                 }
             ),
         }
-        labels = {
-            'name': translate('Name')
-        }
+        labels = {"name": translate("Name")}
