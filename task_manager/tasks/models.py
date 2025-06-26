@@ -6,15 +6,22 @@ from task_manager.users.models import User
 
 
 class Task(models.Model):
-
     name = models.CharField(max_length=100, blank=False, unique=True)
     description = models.TextField(max_length=500, blank=True)
     author = models.ForeignKey(
-        User, on_delete=models.PROTECT, related_name='author', blank=False, null=False
+        User,
+        on_delete=models.PROTECT,
+        related_name="author",
+        blank=False,
+        null=False,
     )
-    executor = models.ForeignKey(User, on_delete=models.PROTECT, blank=True, null=True)
+    executor = models.ForeignKey(
+        User, on_delete=models.PROTECT, blank=True, null=True
+    )
     status = models.ForeignKey(Status, on_delete=models.PROTECT, blank=False)
-    label = models.ManyToManyField(Label, through='TaskToLabel', blank=True, null=True)
+    labels = models.ManyToManyField(
+        Label, through="TaskToLabel", blank=True, null=True
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

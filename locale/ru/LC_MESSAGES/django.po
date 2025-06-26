@@ -54,10 +54,6 @@ msgstr "Выбрать"
 msgid "Tasks"
 msgstr "Задачи"
 
-#: task_manager/tasks/views.py:25
-msgid "ID"
-msgstr "Идентификатор"
-
 #: task_manager/tasks/views.py:28
 msgid "Author"
 msgstr "Автор"
@@ -68,7 +64,7 @@ msgstr "Дата создания"
 
 #: task_manager/tasks/views.py:38
 msgid "Add Task"
-msgstr "Добавить задачу"
+msgstr "Создать задачу"
 
 #: task_manager/tasks/views.py:39
 msgid "Create"
@@ -76,15 +72,15 @@ msgstr "Создать"
 
 #: task_manager/tasks/views.py:41
 msgid "Task created successfully"
-msgstr "Задача создана"
+msgstr "Задача успешно создана"
 
 #: task_manager/tasks/views.py:55
 msgid "Edit task"
-msgstr "Редактировать задачу"
+msgstr "Изменение задачи"
 
 #: task_manager/tasks/views.py:56
 msgid "Update"
-msgstr "Обновить"
+msgstr "Изменить"
 
 #: task_manager/tasks/views.py:68
 msgid "Remove task"
@@ -100,11 +96,11 @@ msgstr "Удалить задачу"
 
 #: task_manager/tasks/views.py:74
 msgid "Task was successfully deleted"
-msgstr "Задача удалена"
+msgstr "Задача успешно удалена"
 
 #: task_manager/tasks/views.py:81
 msgid "Task view"
-msgstr "Вид задачи"
+msgstr "Просмотр задачи"
 
 #: task_manager/templates/header.html:3
 msgid "Task manager"
@@ -118,6 +114,9 @@ msgstr "Пользователи"
 msgid "Statuses"
 msgstr "Статусы"
 
+msgid "Update status"
+msgstr "Изменить статус"
+
 msgid "Remove status"
 msgstr "Удаление статуса"
 
@@ -127,21 +126,24 @@ msgstr "Невозможно удалить статус, потому что о
 msgid "Status delete successfully"
 msgstr "Статус успешно удален"
 
+msgid "Status successfully changed"
+msgstr "Статус успешно изменен"
+
 #: task_manager/templates/header.html:34
 msgid "Exit"
 msgstr "Выход"
 
 #: task_manager/templates/header.html:39
 msgid "Login"
-msgstr "Войти"
+msgstr "Вход"
 
 msgid "Enter"
-msgstr "Вход"
+msgstr "Войти"
 
 #: task_manager/templates/tasks/detail.html:35
 #: task_manager/templates/tasks/index.html:29
 msgid "Edit"
-msgstr "Редактровать"
+msgstr "Изменить"
 
 msgid "Create status"
 msgstr "Создать статус"
@@ -156,16 +158,16 @@ msgid "Edit user"
 msgstr "Изменение пользователя"
 
 msgid "User update successfully"
-msgstr "Изменение пользователя"
+msgstr "Пользователь успешно изменен"
 
 msgid "User created successfully"
-msgstr "Пользователь создан успешно"
+msgstr "Пользователь успешно зарегистрирован"
 
 msgid "Delete user"
 msgstr "Удалить пользователя"
 
 msgid "User was successfully deleted"
-msgstr "Пользователь был удален"
+msgstr "Пользователь успешно удален"
 
 msgid "Password confirmation"
 msgstr "Подтверждение пароля"
@@ -200,20 +202,23 @@ msgstr "Задачу может удалить только ее автор"
 msgid "Task updated successfully"
 msgstr "Задача успешно изменена"
 
-msgid "You cannot delete a label which is currently being used."
+msgid "You cannot delete a label which is currently being used"
 msgstr "Невозможно удалить метку, потому что она используется"
 
 msgid "Labels"
 msgstr "Метки"
 
-msgid "Label has been created successfully."
+msgid "Label has been created successfully"
 msgstr "Метка успешно создана"
 
 msgid "Create label"
 msgstr "Создать метку"
 
-msgid "Label has been edited successfully."
+msgid "Label has been edited successfully"
 msgstr "Метка успешно изменена"
+
+msgid "Label was successfully deleted"
+msgstr "Метка успешно удалена"
 
 msgid "Edit label"
 msgstr "Изменение метки"
@@ -230,9 +235,17 @@ msgstr "Показать"
 msgid "Label"
 msgstr "Метка"
 
+msgid "No labels"
+msgstr "Меток нет"
+
 msgid "My tasks"
 msgstr "Только свои задачи"
 
-msgid "Yes, remove"
+msgid "Yes, delete"
 msgstr "Да, удалить"
 
+msgid "Status was deleted successfully"
+msgstr "Статус успешно удален"
+
+msgid "Created"
+msgstr "Дата создания"

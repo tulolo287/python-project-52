@@ -9,13 +9,19 @@ from task_manager.users.models import User
 
 
 class TaskFilter(FilterSet):
-    status = ModelChoiceFilter(label=translate('Status'), queryset=Status.objects.all())
-    executor = ModelChoiceFilter(
-        label=translate('Executor'), queryset=User.objects.all()
+    status = ModelChoiceFilter(
+        label=translate("Status"), queryset=Status.objects.all()
     )
-    label = ModelChoiceFilter(label=translate('Label'), queryset=Label.objects.all())
-    user_task = BooleanFilter(
-        label=translate('My tasks'), widget=forms.CheckboxInput, method='get_my_tasks'
+    executor = ModelChoiceFilter(
+        label=translate("Executor"), queryset=User.objects.all()
+    )
+    labels = ModelChoiceFilter(
+        label=translate("Label"), queryset=Label.objects.all()
+    )
+    my_tasks_only = BooleanFilter(
+        label=translate("My tasks"),
+        widget=forms.CheckboxInput,
+        method="get_my_tasks",
     )
 
     def get_my_tasks(self, queryset, _, value):
@@ -24,4 +30,4 @@ class TaskFilter(FilterSet):
 
     class Meta:
         model = Task
-        fields = ('status', 'executor', 'label')
+        fields = ("status", "executor", "labels")

@@ -14,28 +14,28 @@ class StatusIndexView(LoginRequiredMixin, ListView):
     context_object_name = "statuses"
     template_name = "statuses/index.html"
     extra_context = {
-        'title': translate('Statuses'),
-        'ID': translate('ID'),
-        'name': translate('Name'),
-        'edit': translate('Edit'),
-        'delete': translate('Delete'),
-        'created_at': translate('Created at'),
-        'create_status': translate('Create status'),
+        "title": translate("Statuses"),
+        "ID": translate("ID"),
+        "name": translate("Name"),
+        "edit": translate("Edit"),
+        "delete": translate("Delete"),
+        "created_at": translate("Created at"),
+        "create_status": translate("Create status"),
     }
-    permission_denied_message = translate('Please login')
+    permission_denied_message = translate("Please login")
 
 
 class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = StatusForm
     context_object_name = "statuses"
     template_name = "form.html"
-    success_url = reverse('statuses')
+    success_url = reverse("statuses")
     extra_context = {
-        'title': translate('Create status'),
-        'submit': translate('Create'),
+        "title": translate("Create status"),
+        "submit": translate("Create"),
     }
-    success_message = translate('Status created successfully')
-    permission_denied_message = translate('Please login')
+    success_message = translate("Status created successfully")
+    permission_denied_message = translate("Please login")
 
 
 class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
@@ -43,13 +43,13 @@ class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     form_class = StatusForm
     context_object_name = "statuses"
     template_name = "form.html"
-    success_url = reverse('statuses')
+    success_url = reverse("statuses")
     extra_context = {
-        'title': translate('Update status'),
-        'submit': translate('Update'),
+        "title": translate("Update status"),
+        "submit": translate("Update"),
     }
-    success_message = translate('Status updated successfully')
-    permission_denied_message = translate('Please login')
+    success_message = translate("Status successfully changed")
+    permission_denied_message = translate("Please login")
 
 
 class StatusDeleteView(
@@ -58,12 +58,12 @@ class StatusDeleteView(
     model = Status
     context_object_name = "statuses"
     template_name = "statuses/delete.html"
-    success_url = reverse('statuses')
+    success_url = reverse("statuses")
     extra_context = {
-        'title': translate('Remove status'),
-        'confirm': translate('Are you sure delete'),
-        'submit': translate('Yes, delete'),
+        "title": translate("Remove status"),
+        "confirm": translate("Are you sure delete"),
+        "submit": translate("Yes, delete"),
     }
-    success_message = translate('Status was deleted successfully')
-    permission_denied_message = translate('Please login')
-    protected_error_message = translate('Cannot delete busy status')
+    success_message = translate("Status was deleted successfully")
+    permission_denied_message = translate("Please login")
+    protected_error_message = translate("Cannot delete busy status")

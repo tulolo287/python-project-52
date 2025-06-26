@@ -18,13 +18,13 @@ class UserIndexView(ListView):
     context_object_name = "users"
     template_name = "users/index.html"
     extra_context = {
-        'title': translate('Users'),
-        'ID': translate('ID'),
-        'username': translate('Username'),
-        'full_name': translate('Full name'),
-        'edit': translate('Edit'),
-        'delete': translate('Delete'),
-        'created_at': translate('Created at'),
+        "title": translate("Users"),
+        "ID": translate("ID"),
+        "username": translate("Username"),
+        "full_name": translate("Full name"),
+        "edit": translate("Edit"),
+        "delete": translate("Delete"),
+        "created_at": translate("Created at"),
     }
 
 
@@ -33,10 +33,10 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     template_name = "form.html"
     success_url = reverse("login")
     extra_context = {
-        'title': translate('Registration'),
-        'submit': translate('Register'),
+        "title": translate("Registration"),
+        "submit": translate("Register"),
     }
-    success_message = translate('User created successfully')
+    success_message = translate("User created successfully")
 
 
 class UserUpdateView(
@@ -50,10 +50,10 @@ class UserUpdateView(
     template_name = "form.html"
     success_url = reverse("users")
     extra_context = {
-        'title': translate('Edit user'),
-        'submit': translate('Update'),
+        "title": translate("Edit user"),
+        "submit": translate("Update"),
     }
-    success_message = translate('User update successfully')
+    success_message = translate("User update successfully")
 
 
 class UserDeleteView(
@@ -68,8 +68,8 @@ class UserDeleteView(
     template_name = "users/delete.html"
     success_url = reverse("users")
     extra_context = {
-        'title': translate('Remove user'),
-        'submit': translate('Yes, remove'),
-        'confirm': translate('Are you sure delete'),
+        "title": translate("Remove user"),
+        "submit": translate("Yes, delete"),
+        "confirm": translate("Are you sure delete"),
     }
-    success_message = translate('User was successfully deleted')
+    success_message = translate("User was successfully deleted")

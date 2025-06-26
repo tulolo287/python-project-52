@@ -7,7 +7,6 @@ from task_manager.test_db import TestDB
 
 
 class TestStatus(TestDB, TestCase):
-
     def test_status_index_page(self):
         self.client.force_login(user=self.user)
         response = self.client.get(reverse("statuses"))
@@ -53,13 +52,13 @@ class TestStatus(TestDB, TestCase):
         messages = list(get_messages(response.wsgi_request))
 
         self.assertEqual(len(messages), 1)
-        self.assertEqual(str(messages[0]), 'Cannot delete busy status')
+        self.assertEqual(str(messages[0]), "Cannot delete busy status")
 
         self.assertRedirects(response, reverse("statuses"))
         self.assertEqual(Status.objects.all().count(), status_count)
 
     def test_delete_status(self):
-        new_status_data = {'name': 'new_status'}
+        new_status_data = {"name": "new_status"}
         new_status = Status.objects.create(**new_status_data)
         status_count = Status.objects.all().count()
 
@@ -71,6 +70,6 @@ class TestStatus(TestDB, TestCase):
         messages = list(get_messages(response.wsgi_request))
 
         self.assertEqual(len(messages), 1)
-        self.assertEqual(str(messages[0]), 'Status was deleted successfully')
+        self.assertEqual(str(messages[0]), "Status was deleted successfully")
 
         self.assertEqual(Status.objects.all().count(), status_count - 1)

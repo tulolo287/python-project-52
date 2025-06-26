@@ -8,45 +8,53 @@ from ..labels.models import Label
 
 
 class TaskForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["executor"].queryset = User.objects.all()
+        self.fields["executor"].label_from_instance = (
+            lambda obj: obj.get_full_name()
+        )
+        self.fields["labels"].queryset = Label.objects.all()
+
     class Meta:
         model = Task
-        fields = ('name', 'description', 'status', 'executor', 'label')
+        fields = ("name", "description", "status", "executor", "labels")
         widgets = {
-            'name': forms.TextInput(
+            "name": forms.TextInput(
                 attrs={
-                    'class': 'form-control',
-                    'placeholder': translate('Name'),
+                    "class": "form-control",
+                    "placeholder": translate("Name"),
                 }
             ),
-            'description': forms.Textarea(
+            "description": forms.Textarea(
                 attrs={
-                    'class': 'form-control',
-                    'placeholder': translate('Description'),
+                    "class": "form-control",
+                    "placeholder": translate("Description"),
                 }
             ),
-            'status': forms.Select(
+            "status": forms.Select(
                 attrs={
-                    'class': 'form-control',
-                    'choices': Status,
+                    "class": "form-control",
+                    "choices": Status,
                 }
             ),
-            'executor': forms.Select(
+            "executor": forms.Select(
                 attrs={
-                    'class': 'form-control',
-                    'choices': User,
+                    "class": "form-control",
+                    "choices": User,
                 }
             ),
-            'label': forms.SelectMultiple(
+            "labels": forms.SelectMultiple(
                 attrs={
-                    'class': 'form-control',
-                    'choices': Label,
+                    "class": "form-control",
+                    "choices": Label,
                 }
             ),
         }
         labels = {
-            'name': translate('Name'),
-            'description': translate('Description'),
-            'status': translate('Status'),
-            'executor': translate('Executor'),
-            'label': translate('Labels'),
+            "name": translate("Name"),
+            "description": translate("Description"),
+            "status": translate("Status"),
+            "executor": translate("Executor"),
+            "labels": translate("Labels"),
         }

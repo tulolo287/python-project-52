@@ -6,7 +6,6 @@ from task_manager.users.models import User
 
 
 class TestUser(TestDB, TestCase):
-
     def users_page_status_200(self):
         response = self.client.get(reverse("users"))
         self.assertEqual(response.status_code, 200)
@@ -36,12 +35,12 @@ class TestUser(TestDB, TestCase):
         self.assertContains(response, self.user_data.get("last_name"))
 
     def test_update_user(self):
-        password = self.user_data.get('password')
+        password = self.user_data.get("password")
         update_user = {
             **self.user_data,
-            'username': 'blas',
-            'password1': password,
-            'password2': password,
+            "username": "blas",
+            "password1": password,
+            "password2": password,
         }
         self.client.force_login(user=self.user)
         response = self.client.post(
@@ -53,11 +52,13 @@ class TestUser(TestDB, TestCase):
         self.assertEqual(user.username, update_user.get("username"))
 
     def test_delete_user(self):
-        user = User.objects.create_user('test')
+        user = User.objects.create_user("test")
         total_users = User.objects.count()
 
         self.client.force_login(user=user)
-        response = self.client.post(reverse("user_delete", kwargs={"pk": user.id}))
+        response = self.client.post(
+            reverse("user_delete", kwargs={"pk": user.id})
+        )
 
         self.assertRedirects(response, reverse("users"))
         self.assertEqual(User.objects.count(), total_users - 1)

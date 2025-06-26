@@ -5,15 +5,14 @@ from .models import Label
 
 
 class LabelForm(forms.ModelForm):
-
     class Meta:
         model = Label
-        fields = ('name',)
+        fields = ("name",)
         widgets = {
-            'name': forms.TextInput(
+            "name": forms.TextInput(
                 attrs={
-                    'placeholder': translate('name'),
+                    "placeholder": translate("name"),
                 }
             )
         }
-        labels = {'name': translate('Name')}
+        labels = {"name": translate("Name")}
