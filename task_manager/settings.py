@@ -37,7 +37,18 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     '0.0.0.0',
     'localhost',
+    'localhost:8000',
+    'solid-zebra-wjww55xg74v259r6-8000.app.github.dev/',
     "python-project-52-8j3s.onrender.com",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://localhost:8000'
+]
+
+
+CORS_ORIGIN_WHITELIST = [
+    'localhost:8000',
 ]
 
 

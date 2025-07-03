@@ -5,7 +5,7 @@ render-start:
 	gunicorn task_manager.wsgi
 
 dev:
-	uv run python3 manage.py runserver
+	uv run python manage.py runserver
 
 install:
 	uv sync
