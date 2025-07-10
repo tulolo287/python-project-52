@@ -50,7 +50,7 @@ class TestLabels(TestDB, TestCase):
 
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(len(messages), 1)
-        self.assertEqual(str(messages[0]), "User was successfully deleted")
+        self.assertEqual(str(messages[0]), "Label was successfully deleted")
 
         self.assertEqual(Label.objects.all().count(), total_labels - 1)
 
@@ -58,7 +58,7 @@ class TestLabels(TestDB, TestCase):
         total_labels = Label.objects.all().count()
         task_data = {"name": "test", "author": self.user, "status": self.status}
         task = Task.objects.create(**task_data)
-        task.label.add(self.label)
+        task.labels.add(self.label)
 
         self.client.force_login(user=self.user)
         response = self.client.post(
@@ -69,7 +69,7 @@ class TestLabels(TestDB, TestCase):
         self.assertEqual(len(messages), 1)
         self.assertEqual(
             str(messages[0]),
-            "You cannot delete a label which is currently being used.",
+            "You cannot delete a label which is currently being used",
         )
 
         self.assertRedirects(response, expected_url=reverse_lazy("labels"))

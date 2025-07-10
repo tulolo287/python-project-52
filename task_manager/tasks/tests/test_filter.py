@@ -30,7 +30,7 @@ class TestFiler(TestDB, TestCase):
         self.assertNotContains(response, self.task2_data.get("name"))
 
     def test_filter_by_label(self):
-        query = {"label": self.label.id}
+        query = {"labels": self.label.id}
         response = self.client.get(reverse_lazy("tasks"), data=query)
         self.assertContains(response, self.task_data.get("name"))
         self.assertNotContains(response, self.task2_data.get("name"))
